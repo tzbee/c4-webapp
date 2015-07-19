@@ -1,0 +1,19 @@
+html
+  head
+    title!= title
+    meta(charset='UTF-8')
+    link(rel='stylesheet', type='text/css' href='lib/font-awesome-4.3.0/css/font-awesome.min.css')
+    link(rel='stylesheet', type='text/css' href='css/main.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
+    script(type='application/javascript' src='lib/underscore-min.js')
+    script(type='application/javascript' src='lib/backbone-min.js')
+  body
+    .container
+      canvas#gameCanvas.
+        PLEASE GET A REAL BROWSER
+      #messageBox.handWritten(style='display:none')
+      .choiceBox
+        span.humanFirst.choiceItem.fa.fa-user
+        span.computerFirst.choiceItem.fa.fa-laptop
+      .sideBox
+    script(type='text/javascript', src='build/build.js')

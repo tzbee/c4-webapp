@@ -4,16 +4,6 @@ var dispatcher = _.clone(Backbone.Events);
 
 var game = new Game();
 
-// Instantiate players
-
-var player1 = new HumanPlayer({
-	index: 0
-});
-
-var player2 = new ExpertAIPlayer({
-	index: 1
-});
-
 // Instantiate views
 
 var boardView = new BoardView({

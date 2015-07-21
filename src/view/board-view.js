@@ -13,9 +13,9 @@ var BoardView = Backbone.View.extend({
 				window.setTimeout(callback, 1000 / 60);
 			};
 
-		this.listenTo(dispatcher, 'played', function(board, row, col, value) {
-			this.update(board, row, col, value, function() {
-				dispatcher.trigger('view:updated');
+		this.listenTo(dispatcher, 'played', function(game, row, col, value) {
+			this.update(game.get('board'), row, col, value, function() {
+				dispatcher.trigger('view:updated', game, row, col, value);
 			});
 		}.bind(this));
 

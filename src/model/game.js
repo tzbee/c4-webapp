@@ -7,20 +7,27 @@ var Game = Backbone.Model.extend({
 	initialize: function() {
 		this.listenTo(dispatcher, 'game:start', this.start);
 		this.listenTo(dispatcher, 'game:restart', this.restart);
-		this.listenTo(dispatcher, 'view:updated', this.onPlayed);
+		this.listenTo(dispatcher, 'view:updated', function(game, row, col, value) {
+			this.onPlayed(game, row, col, value);
+			dispatcher.trigger('turn:' + value + ':done', game, row, col);
+		});
 		this.listenTo(dispatcher, 'play', this.play);
 		this.listenTo(dispatcher, 'view:resized', function() {
 			dispatcher.trigger('game:update', this.get('board'));
 		}.bind(this));
+
+		this.listenTo(dispatcher, 'players:update', this.updatePlayers);
+
+		this.players = [];
 	},
 	nextPlayer: function() {
 		this.set({
 			turn: this.get('turn') === 0 ? 1 : 0
 		});
 	},
-	onPlayed: function() {
+	onPlayed: function(game, row, col, value) {
 		setTimeout(function()  {
-			var board = this.get('board');
+			var board = game.get('board');
 			var index = this.get('turn');
 
 			if (board.checkWin(index)) {
@@ -40,7 +47,7 @@ var Game = Backbone.Model.extend({
 			id: this.get('id') + 1
 		});
 
-		dispatcher.trigger('loading:stop', firstPlayer);
+		dispatcher.trigger('loading:stop');
 		dispatcher.trigger('game:start', firstPlayer);
 	},
 	start: function(firstPlayer) {
@@ -52,10 +59,9 @@ var Game = Backbone.Model.extend({
 
 		dispatcher.trigger('turn:' + this.get('turn'), this);
 	},
-	play: function(col, player, gameId)  {
+	play: function(col, index, gameId)  {
 		setTimeout(function()  {
 			var board = this.get('board');
-			var index = player.get('index');
 
 			// Check if col is playable
 			if (!board.isValidMove(col)) return;
@@ -67,7 +73,12 @@ var Game = Backbone.Model.extend({
 
 			var move = board.play(col, index);
 
-			dispatcher.trigger('played', board, move[0], col, index);
+			dispatcher.trigger('played', this, move[0], col, index);
 		}.bind(this), 0);
+	},
+	updatePlayers: function(player1, player2) {
+		this.set({
+			players: [player1, player2]
+		});
 	}
 });

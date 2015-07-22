@@ -2,22 +2,7 @@ html
   head
     title!= title
     meta(charset='UTF-8')
-    link(rel='stylesheet', type='text/css' href='js/lib/font-awesome-4.3.0/css/font-awesome.min.css')
-    link(rel='stylesheet', type='text/css' href='css/main.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
-    script(type='application/javascript' src='js/lib/underscore-min.js')
-    script(type='application/javascript' src='js/lib/backbone-min.js')
-    script(src='https://cdn.socket.io/socket.io-1.3.5.js')
+    include css
   body
-    .container
-      canvas#gameCanvas.
-        PLEASE GET A REAL BROWSER
-      #messageBox.handWritten(style='display:none')
-      .choiceBox
-        span.humanFirst.choiceItem.fa.fa-user
-        span.computerFirst.choiceItem.fa.fa-laptop
-      .sideBox
-    if "production" == process.env.NODE_ENV
-      script(src='js/build.min.js')
-    else
-      script(src='js/build.js')    
+    include game-container
+    include scripts

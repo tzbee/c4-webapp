@@ -2,5 +2,5 @@
 Connect 4 web app, using express, backboneJS and HTML5 canvas.
 
 # Demo
-https://tzbee.herokuapp.com/c4
+http://c4-webapp.herokuapp.com/#online
 

@@ -41,7 +41,7 @@ var ExpertAIPlayer = Player.extend({
 		var gameId = game.get('id');
 		this.getNextMove(game.get('board'), function(nextMove) {
 			dispatcher.trigger('loading:stop');
-			dispatcher.trigger('play', nextMove, this, gameId);
+			dispatcher.trigger('play', nextMove, this.get('index'), gameId);
 		}.bind(this));
 	},
 	getNextMove: function(boardController, cb) {

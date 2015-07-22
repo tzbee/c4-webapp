@@ -4,6 +4,26 @@ body {
 	font-weight: bold;
 }
 
+header {
+	font-size: 2rem;
+	text-align: center;
+	padding: 0.5vmax;
+	margin: 0.5vmax;
+}
+
+footer {
+	font-size: 0.9rem;
+	text-align: right;
+	padding: 0.2vmax;
+	margin-right: 1.2vmax;
+	margin-left: 1.2vmax;
+	font-weight: normal;
+}
+
+.link {
+	text-decoration: none;
+}
+
 .container {
 	max-width: 600px;
 	width: 40%;

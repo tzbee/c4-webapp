@@ -4,11 +4,10 @@ html
     meta(charset='UTF-8')
     include css
   body
-    header.
-      Connect 4
+    header
+      include header-content
     section.container
       include game-content
     footer
-      | Created by 
-      a.link(href='https://github.com/tzbee') tzbee
+      include footer-content
     include scripts

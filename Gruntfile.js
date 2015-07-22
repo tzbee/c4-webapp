@@ -33,6 +33,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['concat']);
-  grunt.registerTask('c', ['concat']);
   grunt.registerTask('production', ['concat', 'uglify', 'clean']);
 };

@@ -1,3 +1,4 @@
 node_modules
 npm-debug.log
 public/js/build.min.js
+public/js/build.js

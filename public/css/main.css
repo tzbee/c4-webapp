@@ -134,3 +134,30 @@ header {
 .log-entry {
 	padding:10px;
 }
+
+@media (max-width: 700px) and (orientation: portrait) { 
+	
+	body {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.game-container {
+		margin:0;
+	}
+
+	.canvas-container {
+		width: 100%;
+		clear: both;
+	}
+
+	.canvas-wrapper {
+		width: 90%;
+		margin: auto;
+	}
+
+	.options-container {
+		clear:both;
+		margin: auto;
+	}
+}

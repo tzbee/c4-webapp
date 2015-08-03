@@ -13,11 +13,13 @@ gameRouter.on('route:start', function(index) {
 	// Instantiate players
 
 	var player1 = new HumanPlayer({
-		index: 0
+		index: 0,
+		name: 'Frank'
 	});
 
 	var player2 = new ExpertAIPlayer({
-		index: 1
+		index: 1,
+		name: 'Lysa (computer)'
 	});
 
 	dispatcher.trigger('players:update', player1, player2);

@@ -1,4 +1,5 @@
 var HumanPlayer = Player.extend({
+	type:'human',
 	onTurn: function(game) {
 		dispatcher.trigger('game:enable');
 

@@ -1,4 +1,5 @@
 var LocalPlayer = Player.extend({
+	type:'human',
 	onTurn: function(game) {
 		dispatcher.trigger('game:enable');
 
@@ -22,6 +23,7 @@ var LocalPlayer = Player.extend({
 });
 
 var OnlinePlayer = Player.extend({
+	type:'human',
 	onTurn: function(game) {
 		var socket = this.get('socket');
 

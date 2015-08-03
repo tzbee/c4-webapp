@@ -15,5 +15,9 @@ var resultView = new ResultView({
 });
 
 var choiceView = new ChoiceView({
-	el: $('.choiceBox')
+	el: $('.players-panel')
+});
+
+var logView = new LogView({
+	el: $('.log-panel')
 });

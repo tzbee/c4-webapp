@@ -4,10 +4,34 @@ html
     meta(charset='UTF-8')
     include css
   body
-    header
-      include header-content
-    section.container
-      include game-content
+    header.
+      Connect 4
+    section.game-container
+      .canvas-container
+        .canvas-wrapper
+          canvas#gameCanvas.
+            PLEASE GET A REAL BROWSER
+      .options-container
+        .players-panel
+          .choice-container.index-0
+            .choice.index-0
+              .player-icon-container.player-item
+                .player-icon
+              .player-name.player-item.name-container.
+                YOU
+              button.player.button.start-button.player-item.index-0.
+                START
+          .choice-container.index-1
+            .choice.index-1
+              .player-icon-container.player-item
+                .player-icon
+              .player-name.player-item.name-container.
+                LYSA (COMPUTER)
+              button.player.button.start-button.player-item.index-1.
+                START
+        .log-panel 
+          .panel-header 
+            span.panel-header-content LOGS
+          .panel-content
     footer
-      include footer-content
     include scripts

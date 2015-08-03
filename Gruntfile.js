@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-  var jsFiles = ['src/players/player.js', 'src/players/expert-ai.js', 'src/players/human-player.js', 'src/players/online-player.js', 'src/model/board.js', 'src/model/game.js', 'src/view/view-config.js', 'src/view/board-view.js', 'src/view/choice-view.js', 'src/view/result-view.js', 'src/index.js', 'src/router.js'];
+  var jsFiles = ['src/players/player.js', 'src/players/expert-ai.js', 'src/players/human-player.js', 'src/players/online-player.js', 'src/model/board.js', 'src/model/game.js', 'src/view/view-config.js', 'src/view/board-view.js', 'src/view/choice-view.js', 'src/view/result-view.js', 'src/view/log-view.js', 'src/index.js', 'src/router.js'];
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),

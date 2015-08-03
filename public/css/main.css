@@ -1,67 +1,136 @@
 body {
-	background-color: #EEEEEE;
 	font-family: arial,sans-serif;
-	font-weight: bold;
+	background-color: #FFFFFF;
+	padding-left: 100px;
+	padding-right: 100px;
 }
 
 header {
-	font-size: 2rem;
 	text-align: center;
-	padding: 0.5vmax;
-	margin: 0.5vmax;
-}
-
-footer {
-	font-size: 0.9rem;
-	text-align: right;
-	padding: 0.2vmax;
-	margin-right: 1.2vmax;
-	margin-left: 1.2vmax;
-	font-weight: normal;
-}
-
-.link {
-	text-decoration: none;
-}
-
-.container {
-	max-width: 600px;
-	width: 40%;
-	margin: auto;
-	padding: 0px;
-	text-align: center;
-}
-
-.result {
-	display: inline-block;
+	margin: 10px;
 	font-size: 3rem;
+	margin-bottom: 20px;
+}
+
+.options-container {
+	overflow: auto;
+	float:left;
+}
+
+.players-panel {
+	border: solid 1px #DDDDDD;
+	padding: 0;
+}
+
+.game-container {
+	clear: both;
+	overflow: auto;
+	margin:30px;
+}
+
+.canvas-container {
+	width: 60%;
+	float: left;
+	margin-left:20px;
+	margin-right:20px;
+}
+
+.canvas-wrapper {
+	width: 60%;
+	margin: auto;
+}
+
+.player {
+	overflow: auto;
+}
+
+.player-info {
+	margin:5px;
+	float:left;
+	padding:8px;
+	font-size: 2em;
+}
+
+.choice-container {
+	overflow: auto;
+	padding:3px;
+}
+
+.choice-container.active {
+	background: #EEEEEE;
+}
+
+.choice {
+	overflow: auto;
+	margin-top:10px;
+	margin-bottom: 10px;
+	font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
 	font-weight: bold;
 }
 
-.yellow {
-	color: #DDDD22;
+.button {
+	border: none;
+	background: #65a9d7;
+	padding: 7px 12px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+	color: #ffffff;
+	vertical-align: middle;
+	font-weight: bold;
 }
 
-.red {
-	color: #DD2222;
+.button:hover {
+   border-top-color: #28597a;
+   background: #28597a;
+   color: #ffffff;
 }
 
-.sideBox, .choiceBox {
-	margin: auto;
+.button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
 }
 
-.choiceBox {
-	width: 28%;
-	font-size: 5vmax;
+.start-button {
+	font-size: 15px;
 }
 
-.choiceItem:hover {
-	color: #222222 !important; 
-	cursor: pointer;
+.player-item {
+	float: left;
+	margin: 0 10px 0 10px;
 }
 
-@media all and (orientation: portrait) { 
-	.container {
-		width: 100%;
-	}
+.name-container {
+	width: 120px;
+}
+
+.player-icon {
+	font-size: 1.6em;
+}
+
+.player-icon-container {
+	width: 50px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.log-panel {
+	border: solid 1px #DDDDDD;
+	padding: 0;
+	margin-top:50px;
+}
+
+.panel-header {
+	padding:10px;
+	font-weight: bold;
+}
+
+.panel-content {
+	height: 190px;
+	overflow: auto;
+}
+
+.log-entry {
+	padding:10px;
 }

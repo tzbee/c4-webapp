@@ -3,7 +3,9 @@ var BoardView = Backbone.View.extend({
 	tokens: tokens,
 	initialize: function() {
 		this.ctx = this.el.getContext('2d');
-		this.bgColor = $('body').css('backgroundColor');
+
+		// Look for first background color
+		this.bgColor = this.getFirstParentBackgroundColor(this.$el);
 
 		window.requestAnimationFrame = window.webkitRequestAnimationFrame ||
 			window.mozRequestAnimationFrame ||
@@ -36,6 +38,9 @@ var BoardView = Backbone.View.extend({
 		this.listenTo(dispatcher, 'game:update', function(board) {
 			this.initBoard(board);
 		}.bind(this));
+	},
+	getFirstParentBackgroundColor: function($currentElement) {
+		return $currentElement.css('backgroundColor') === 'rgba(0, 0, 0, 0)' && !$currentElement.is('body') ? this.getFirstParentBackgroundColor($currentElement.parent()) : $currentElement.css('backgroundColor');
 	},
 	initBoard: function(board) {
 		var self = this;

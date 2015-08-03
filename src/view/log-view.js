@@ -29,6 +29,6 @@ var LogView = Backbone.View.extend({
 		$('.panel-content').empty();
 	},
 	onWin: function(index) {
-		this.add('Player ' + index + ' wins', true);
+		this.add('Player ' + (index + 1) + ' wins', true);
 	}
 });

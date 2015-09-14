@@ -1,0 +1,19 @@
+html { 
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  color: $color-black;
+  font-family: 'Hind Vadodara', Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,0 +1,260 @@
+@import "normalize";
+@import "variables";
+@import "layout";
+@import "buttons";
+@import "font-awesome";
+
+#header {
+  background: $color-white;
+  border-bottom: 1px solid $color-black;
+  height: $height-header + 1px;
+  position: relative;
+  z-index: 2;
+
+  h1 {
+    display: inline-block;
+    margin: 0;
+
+    a {
+      display: block;
+    }
+
+    img {
+      display: block;
+      height: $height-header;
+      width: 170px;
+    }
+  }
+}
+
+#games {
+  display: inline-block;
+  vertical-align: top;
+
+  a {
+    color: $color-silver;
+    display: block;
+    height: $height-header;
+    line-height: $height-header;
+    padding: 0 1em;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+main {
+  height: 100%;
+  left: 0;
+  padding-top: $height-header;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 68%;
+  z-index: 1;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 80%;
+    margin-right: -0.25em;
+    vertical-align: middle;
+  }
+}
+
+#game {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+
+  &.start {
+    h2 {
+      color: $color-primary;
+      font-size: 2em;
+      font-weight: 100;
+    }
+  }
+
+  &.live {
+    width: 100%;
+  }
+
+  &.loading {
+    i {
+      color: $color-primary;
+      font-size: 142px;
+    }
+  }
+}
+
+#board { 
+  background: #eee;
+  // Arbitrary sizes, should be calculated for the real gameboard
+  height: 400px;
+  margin: auto;
+  width: 80%;
+}
+
+#settings {
+  bottom: 0;
+  height: 20%;
+  position: absolute;
+  width: 100%;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    margin-right: -0.25em;
+    vertical-align: middle;
+  }
+
+  .content {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .group {
+    display: inline-block;
+    margin: 1em;
+  }
+
+  .label {
+    padding-right: 10px;
+  }
+
+  .player {
+    &.robot {
+      color: #5FC8EB;
+    }
+
+    &.user {
+      color: #4DE424;
+    }
+
+    &.playing {
+      text-decoration: underline;
+    }
+  }
+}
+
+#chat {
+  background: $color-black;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 32%;
+  z-index: 3;
+
+  .header {
+    background: $color-white;
+    line-height: $height-header;
+    text-align: center;
+  }
+
+  .content {
+    color:  $color-white;
+  }
+
+  .messages {
+    bottom: 20%;
+    list-style: none;
+    margin: 0;
+    overflow: auto;
+    padding: 20px;
+    position: absolute;
+    // top: $height-header;
+
+    li {
+      padding: 5px 0;
+    }
+
+    .author {
+      padding-right: 5px;
+    }
+
+    .text {
+      font-weight: 100;
+    }
+
+    .game {
+      color: $color-silver;
+      font-style: italic;
+    }
+
+    .robot {
+      .author {
+        color: #5FC8EB;
+      }
+    }
+
+    .user {
+      .author {
+        color: #4DE424;
+      }
+    }
+  }
+
+  .send {
+    bottom: 0;
+    left: 0;
+    height: 20%;
+    padding: 20px;
+    position: absolute;
+    right: 0;
+
+    &:before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      margin-right: -0.25em;
+      vertical-align: middle;
+    }
+
+    div {
+      display: inline-block;
+      vertical-align: middle;
+      width: 100%;
+    }
+
+    .message {
+      background: rgba(0, 0, 0, 0.19);
+      border: none;
+      border-radius: 3px;
+      box-shadow: none;
+      outline: none;
+      overflow: auto;
+      padding: 10px;
+      transition: all 0.2s;
+      width: 100%;
+
+      &:focus {
+        background: rgba(0, 0, 0, 0.38);
+      }
+    }
+
+    .submit {
+      background: none;
+      border: none;
+      line-height: 24px;
+      opacity: 0.5;
+      padding: 10px;
+      position: absolute;
+      right: 20px;
+      transition: all 0.2s;
+
+      &:hover {
+        // color: $color-primary;
+        opacity: 1;
+      }
+    }
+  }
+}

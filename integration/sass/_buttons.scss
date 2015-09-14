@@ -1,0 +1,40 @@
+.btn {
+  background: none;
+  border: 1px solid $color-primary;
+  border-radius: 3px;
+  color: $color-primary;
+  display: inline-block;
+  outline: none;
+  transition: all 0.2s;
+
+  &:hover {
+    background: $color-primary;
+    color: $color-white;
+  }
+
+  &.btn-green {
+  border-color: $color-green;
+  color: $color-green;
+
+    &:hover, &.active {
+      background: $color-green;
+      color: $color-white;
+    }
+  }
+
+  &.btn-blue {
+  border-color: $color-blue;
+  color: $color-blue;
+
+    &:hover, &.active {
+      background: $color-blue;
+      color: $color-white;
+    }
+  }
+
+  &.btn-big {
+    font-size: 2em;
+    margin: 1em;
+    padding: 1em 1.5em;
+  }
+}

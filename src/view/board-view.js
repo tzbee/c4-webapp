@@ -4,8 +4,8 @@ var BoardView = Backbone.View.extend({
 	initialize: function() {
 		this.ctx = this.el.getContext('2d');
 
-		// Look for first background color
-		this.bgColor = this.getFirstParentBackgroundColor(this.$el);
+		// Get hardcoded background color
+		this.bgColor = bgColor;
 
 		window.requestAnimationFrame = window.webkitRequestAnimationFrame ||
 			window.mozRequestAnimationFrame ||

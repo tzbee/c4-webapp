@@ -5,3 +5,6 @@ var colors = {
 	yellow: '#DDDD22',
 	maskBlue: '#222266'
 };
+
+// Hardcoded background color for refreshing game 
+var bgColor = '#FFFFFF';

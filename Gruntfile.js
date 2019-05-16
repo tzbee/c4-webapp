@@ -1,17 +1,30 @@
 module.exports = function(grunt) {
-
-  var jsFiles = ['src/players/player.js', 'src/players/expert-ai.js', 'src/players/human-player.js', 'src/players/online-player.js', 'src/model/board.js', 'src/model/game.js', 'src/view/view-config.js', 'src/view/board-view.js', 'src/view/choice-view.js', 'src/view/result-view.js', 'src/view/log-view.js', 'src/index.js', 'src/router.js'];
+  var jsFiles = [
+    'src/players/player.js',
+    'src/players/expert-ai.js',
+    'src/players/human-player.js',
+    'src/players/online-player.js',
+    'src/model/board.js',
+    'src/model/game.js',
+    'src/view/view-config.js',
+    'src/view/board-view.js',
+    'src/view/choice-view.js',
+    'src/view/result-view.js',
+    'src/view/log-view.js',
+    'src/index.js',
+    'src/router.js'
+  ];
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
       options: {
-        separator: ';',
+        separator: ';'
       },
       dist: {
         src: jsFiles,
-        dest: 'public/js/build.js',
-      },
+        dest: 'public/js/build.js'
+      }
     },
     uglify: {
       my_target: {
@@ -32,6 +45,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['concat']);
-  grunt.registerTask('production', ['concat', 'uglify', 'clean']);
+  grunt.registerTask('default', ['dev']);
+  grunt.registerTask('dev', ['concat', 'watch']);
+  grunt.registerTask('prod', ['concat', 'uglify', 'clean']);
 };

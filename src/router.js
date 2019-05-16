@@ -2,24 +2,23 @@ var GameRouter = Backbone.Router.extend({
 	routes: {
 		'': 'start',
 		'local/:index': 'start',
-		'online': 'startOnline'
+		online: 'startOnline'
 	}
 });
 
 var gameRouter = new GameRouter();
 
 gameRouter.on('route:start', function(index) {
-
 	// Instantiate players
 
 	var player1 = new HumanPlayer({
 		index: 0,
-		name: 'Frank'
+		name: 'You'
 	});
 
 	var player2 = new ExpertAIPlayer({
 		index: 1,
-		name: 'Lysa (computer)'
+		name: 'Computer'
 	});
 
 	dispatcher.trigger('players:update', player1, player2);

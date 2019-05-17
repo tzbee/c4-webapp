@@ -171,10 +171,24 @@ header {
 	padding: 0.3em 0 0.3em 0;
 }
 
-@media (max-width: 700px) and (orientation: portrait) {
+/* Small desktop heights*/
+@media (orientation: landscape) and (max-height: 57em) {
+	.canvas-container {
+		font-size: 0.65em;
+	}
+
+	.log-panel {
+		font-size: 0.6em;
+	}
+
+	.panel-content {
+		height: 16em;
+	}
+}
+
+/* Mobile */
+@media (orientation: portrait) {
 	body {
-		padding-left: 0;
-		padding-right: 0;
 	}
 
 	.game-container {

@@ -11,27 +11,34 @@ html
         .canvas-wrapper
           canvas#gameCanvas.
             PLEASE GET A REAL BROWSER
-      .options-container
-        .players-panel
-          .choice-container.index-0
+      .options-panel
+        .options-content
+          .players-panel
             .choice.index-0
-              .player-icon-container.player-item
-                .player-icon
-              .player-name.player-item.name-container.
-                YOU
-              button.player.button.start-button.player-item.index-0.
-                START
-          .choice-container.index-1
+              .choice-left.choice-block
+                .choice-player-icon
+                  .player-icon
+                .choice-player-name
+                  .player-name
+                    You
+              .choice-right.choice-block
+                .choice-player-start
+                  button.player.button.start-button.player-item.index-0.
+                    START
             .choice.index-1
-              .player-icon-container.player-item
-                .player-icon
-              .player-name.player-item.name-container.
-                LYSA (COMPUTER)
-              button.player.button.start-button.player-item.index-1.
-                START
-        .log-panel 
-          .panel-header 
-            span.panel-header-content LOGS
-          .panel-content
+              .choice-left.choice-block
+                .choice-player-icon
+                  .player-icon
+                .choice-player-name
+                  .player-name
+                    You
+              .choice-right.choice-block
+                .choice-player-start
+                  button.player.button.start-button.player-item.index-1.
+                    START
+          .log-panel 
+            .panel-header 
+              span.panel-header-content LOGS
+            .panel-content
     footer
     include scripts

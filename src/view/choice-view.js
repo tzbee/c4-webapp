@@ -7,13 +7,21 @@ var ChoiceView = Backbone.View.extend({
 		$('.player-icon', this.getChoiceBox(0)).css('color', colors[tokens[0]]);
 		$('.player-icon', this.getChoiceBox(1)).css('color', colors[tokens[1]]);
 
-		this.listenTo(dispatcher, 'turn:0', function() {
-			this.switchTurnTo(0);
-		}.bind(this));
+		this.listenTo(
+			dispatcher,
+			'turn:0',
+			function() {
+				this.switchTurnTo(0);
+			}.bind(this)
+		);
 
-		this.listenTo(dispatcher, 'turn:1', function() {
-			this.switchTurnTo(1);
-		}.bind(this));
+		this.listenTo(
+			dispatcher,
+			'turn:1',
+			function() {
+				this.switchTurnTo(1);
+			}.bind(this)
+		);
 
 		this.listenTo(dispatcher, 'players:update', this.update);
 		this.listenTo(dispatcher, 'players:update', this.update);
@@ -50,7 +58,7 @@ var ChoiceView = Backbone.View.extend({
 		return $('.choice.index-' + index);
 	},
 	switchTurnTo: function(index) {
-		$('.choice-container.index-' + (index === 0 ? 1 : 0)).removeClass('active');
-		$('.choice-container.index-' + index).addClass('active');
+		$('.choice.index-' + (index === 0 ? 1 : 0)).removeClass('active');
+		$('.choice.index-' + index).addClass('active');
 	}
 });

@@ -1,5 +1,5 @@
 var LocalPlayer = Player.extend({
-	defaults: { type: 'human' },
+	defaults: { type: 'human', name: 'You' },
 	onTurn: function(game) {
 		dispatcher.trigger('game:enable');
 
@@ -34,7 +34,7 @@ var LocalPlayer = Player.extend({
 });
 
 var OnlinePlayer = Player.extend({
-	defaults: { type: 'human' },
+	defaults: { type: 'ai', name: 'Opponent' },
 	onTurn: function(game) {
 		var socket = this.get('socket');
 

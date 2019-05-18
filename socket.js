@@ -4,7 +4,7 @@ var activeUsers = [];
 module.exports = function(http) {
 	io = require('socket.io')(http);
 
-	io.on('connection', function(socket)  {
+	io.on('connection', function(socket) {
 		if (!maxUsersReached()) addUser(socket);
 		if (maxUsersReached()) sendGameReady();
 

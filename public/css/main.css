@@ -224,4 +224,12 @@ header {
 	.panel-content {
 		height: 7em;
 	}
+
+	.start-button {
+		font-size: 1em;
+	}
+
+	.log-panel {
+		font-size: 1.2em;
+	}
 }

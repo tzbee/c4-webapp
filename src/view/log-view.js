@@ -23,7 +23,7 @@ var LogView = Backbone.View.extend({
 			.scrollTop(300);
 	},
 	onTurnEnd: function(game, row, col) {
-		const playerName = game.get('players')[game.get('turn')].get('name');
+		var playerName = game.get('players')[game.get('turn')].get('name');
 		this.add(
 			'<strong>' + playerName + '</strong>' + ' played ' + (col + 1)
 		);

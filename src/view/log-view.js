@@ -13,7 +13,7 @@ var LogView = Backbone.View.extend({
 		$('.panel-content')
 			.append(
 				$('<div>', {
-					class: `log-entry ${type ? 'log-' + type : ''}`,
+					class: 'log-entry' + (type ? 'log-' + type : ''),
 					html: $(!important ? '<span>' : '<strong>', {
 						class: 'log-entry-content',
 						html: message

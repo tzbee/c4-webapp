@@ -1,16 +1,27 @@
 var LocalPlayer = Player.extend({
-	type:'human',
+	defaults: { type: 'human' },
 	onTurn: function(game) {
 		dispatcher.trigger('game:enable');
 
-		this.listenTo(dispatcher, 'tile:click', function(col) {
-			dispatcher.trigger('play', col, this.get('index'), game.get('id'));
-			dispatcher.trigger('game:disable');
-			this.stopListening(dispatcher, 'tile:click');
-		}.bind(this));
+		this.listenTo(
+			dispatcher,
+			'tile:click',
+			function(col) {
+				dispatcher.trigger(
+					'play',
+					col,
+					this.get('index'),
+					game.get('id')
+				);
+				dispatcher.trigger('game:disable');
+				this.stopListening(dispatcher, 'tile:click');
+			}.bind(this)
+		);
 	},
 	onEndTurn: function(game, row, col) {
-		console.log('Turn ' + this.get('index') + ' is done, col ' + col + ' was played');
+		console.log(
+			'Turn ' + this.get('index') + ' is done, col ' + col + ' was played'
+		);
 		var socket = this.get('socket');
 
 		socket.emit('played', {
@@ -23,7 +34,7 @@ var LocalPlayer = Player.extend({
 });
 
 var OnlinePlayer = Player.extend({
-	type:'human',
+	defaults: { type: 'human' },
 	onTurn: function(game) {
 		var socket = this.get('socket');
 

@@ -171,6 +171,13 @@ header {
 	padding: 0.3em 0 0.3em 0;
 }
 
+.log-human {
+	color: #dd2222;
+}
+.log-ai {
+	color: #4d964a;
+}
+
 /*  Tablets*/
 @media (orientation: landscape) and (max-width: 60em) {
 	.canvas-container {

@@ -7,7 +7,8 @@ var BoardView = Backbone.View.extend({
 		// Get hardcoded background color
 		this.bgColor = bgColor;
 
-		window.requestAnimationFrame = window.webkitRequestAnimationFrame ||
+		window.requestAnimationFrame =
+			window.webkitRequestAnimationFrame ||
 			window.mozRequestAnimationFrame ||
 			window.oRequestAnimationFrame ||
 			window.msRequestAnimationFrame ||
@@ -15,32 +16,51 @@ var BoardView = Backbone.View.extend({
 				window.setTimeout(callback, 1000 / 60);
 			};
 
-		this.listenTo(dispatcher, 'played', function(game, row, col, value) {
-			this.update(game.get('board'), row, col, value, function() {
-				dispatcher.trigger('view:updated', game, row, col, value);
-			});
-		}.bind(this));
+		this.listenTo(
+			dispatcher,
+			'played',
+			function(game, row, col, value) {
+				this.update(game.get('board'), row, col, value, function() {
+					dispatcher.trigger('view:updated', game, row, col, value);
+				});
+			}.bind(this)
+		);
 
 		this.listenTo(dispatcher, 'game:init', this.initBoard);
 
-		this.listenTo(dispatcher, 'game:enable', function() {
-			this.enabled = true;
-		}.bind(this));
+		this.listenTo(
+			dispatcher,
+			'game:enable',
+			function() {
+				this.enabled = true;
+			}.bind(this)
+		);
 
-		this.listenTo(dispatcher, 'game:disable', function() {
-			this.enabled = false;
-		}.bind(this));
+		this.listenTo(
+			dispatcher,
+			'game:disable',
+			function() {
+				this.enabled = false;
+			}.bind(this)
+		);
 
 		window.onresize = function() {
 			dispatcher.trigger('view:resized');
 		};
 
-		this.listenTo(dispatcher, 'game:update', function(board) {
-			this.initBoard(board);
-		}.bind(this));
+		this.listenTo(
+			dispatcher,
+			'game:update',
+			function(board) {
+				this.initBoard(board);
+			}.bind(this)
+		);
 	},
 	getFirstParentBackgroundColor: function($currentElement) {
-		return $currentElement.css('backgroundColor') === 'rgba(0, 0, 0, 0)' && !$currentElement.is('body') ? this.getFirstParentBackgroundColor($currentElement.parent()) : $currentElement.css('backgroundColor');
+		return $currentElement.css('backgroundColor') === 'rgba(0, 0, 0, 0)' &&
+			!$currentElement.is('body')
+			? this.getFirstParentBackgroundColor($currentElement.parent())
+			: $currentElement.css('backgroundColor');
 	},
 	initBoard: function(board) {
 		var self = this;
@@ -48,7 +68,7 @@ var BoardView = Backbone.View.extend({
 		var $parent = this.$el.parent();
 
 		this.width = $parent.width();
-		this.height = this.width * 6 / 7;
+		this.height = (this.width * 6) / 7;
 
 		this.$el.attr('width', this.width);
 		this.$el.attr('height', this.height);
@@ -61,15 +81,25 @@ var BoardView = Backbone.View.extend({
 
 		// Cache some drawings
 
-		this.redPieceCanvas = this.renderOffScreen(this.pieceRadius * 2, this.pieceRadius * 2, function(ctx) {
-			self.drawPiece(ctx, self.pieceRadius, colors.red);
-		});
+		this.redPieceCanvas = this.renderOffScreen(
+			this.pieceRadius * 2,
+			this.pieceRadius * 2,
+			function(ctx) {
+				self.drawPiece(ctx, self.pieceRadius, colors.red);
+			}
+		);
 
-		this.yellowPieceCanvas = this.renderOffScreen(this.pieceRadius * 2, this.pieceRadius * 2, function(ctx) {
-			self.drawPiece(ctx, self.pieceRadius, colors.yellow);
-		});
+		this.greenPieceCanvas = this.renderOffScreen(
+			this.pieceRadius * 2,
+			this.pieceRadius * 2,
+			function(ctx) {
+				self.drawPiece(ctx, self.pieceRadius, colors.green);
+			}
+		);
 
-		this.maskCache = this.renderOffScreen(this.width, this.height, function(ctx) {
+		this.maskCache = this.renderOffScreen(this.width, this.height, function(
+			ctx
+		) {
 			self.renderMask(ctx, board, self.holeRadius, colors.maskBlue);
 		});
 
@@ -101,9 +131,17 @@ var BoardView = Backbone.View.extend({
 				var piece = board.getTile(row, col);
 				if (piece !== -1) {
 					var token = this.tokens[piece];
-					var pos = (tileSize - (pieceRadius * 2)) / 2;
+					var pos = (tileSize - pieceRadius * 2) / 2;
 
-					ctx.drawImage(token === 'red' ? this.redPieceCanvas : token === 'yellow' ? this.yellowPieceCanvas : null, col * tileSize + pos, row * tileSize + pos);
+					ctx.drawImage(
+						token === 'red'
+							? this.redPieceCanvas
+							: token === 'green'
+							? this.greenPieceCanvas
+							: null,
+						col * tileSize + pos,
+						row * tileSize + pos
+					);
 				}
 			}
 		}
@@ -116,8 +154,9 @@ var BoardView = Backbone.View.extend({
 			tileSize = this.tileWidth,
 			maskWidth = this.width,
 			maskHeight = this.height,
-			row, col,
-			pos = (tileSize - (holeRadius * 2)) / 2 + holeRadius;
+			row,
+			col,
+			pos = (tileSize - holeRadius * 2) / 2 + holeRadius;
 
 		ctx.save();
 
@@ -127,7 +166,13 @@ var BoardView = Backbone.View.extend({
 		for (row = 0; row < nbRows; row++) {
 			for (col = 0; col < nbCols; col++) {
 				ctx.moveTo(col * tileSize + pos, row * tileSize + pos);
-				ctx.arc(col * tileSize + pos, row * tileSize + pos, holeRadius, 0, 2 * Math.PI);
+				ctx.arc(
+					col * tileSize + pos,
+					row * tileSize + pos,
+					holeRadius,
+					0,
+					2 * Math.PI
+				);
 			}
 		}
 
@@ -137,7 +182,7 @@ var BoardView = Backbone.View.extend({
 		ctx.restore();
 	},
 	events: {
-		'click': 'onTileClick'
+		click: 'onTileClick'
 	},
 	drawPiece: function(ctx, radius, color) {
 		ctx.save();
@@ -166,16 +211,20 @@ var BoardView = Backbone.View.extend({
 		return [x, y];
 	},
 	getPieceBuffer: function(value) {
-		return value === 0 ? this.redPieceCanvas : value === 1 ? this.yellowPieceCanvas : null;
+		return value === 0
+			? this.redPieceCanvas
+			: value === 1
+			? this.greenPieceCanvas
+			: null;
 	},
 	startAnimation: function(ctx, board, row, col, value, done) {
 		var tileSize = this.tileWidth,
 			pieceRadius = this.pieceRadius,
-			posOffset = (tileSize - (pieceRadius * 2)) / 2,
+			posOffset = (tileSize - pieceRadius * 2) / 2,
 			x = col * tileSize + posOffset,
 			destinationY = row * tileSize + posOffset,
 			startingY = -2 * pieceRadius,
-			image = value === 0 ? this.redPieceCanvas : this.yellowPieceCanvas,
+			image = value === 0 ? this.redPieceCanvas : this.greenPieceCanvas,
 			self = this,
 			requestAnimationFrame = window.requestAnimationFrame,
 			tmpCtx,
@@ -183,18 +232,26 @@ var BoardView = Backbone.View.extend({
 			nbCols = board.get('nbCols'),
 			lastTime,
 			speed = this.width / 150,
-			tokenCanvas = this.renderOffScreen(this.width, this.height, function(ctx) {
-				for (var r = 0; r < nbRows; r++) {
-					for (var c = 0; c < nbCols; c++) {
-						if (row === r && col === c) continue;
+			tokenCanvas = this.renderOffScreen(
+				this.width,
+				this.height,
+				function(ctx) {
+					for (var r = 0; r < nbRows; r++) {
+						for (var c = 0; c < nbCols; c++) {
+							if (row === r && col === c) continue;
 
-						var piece = board.getTile(r, c);
-						if (piece !== -1) {
-							ctx.drawImage(self.getPieceBuffer(piece), tileSize * c + posOffset, tileSize * r + posOffset);
+							var piece = board.getTile(r, c);
+							if (piece !== -1) {
+								ctx.drawImage(
+									self.getPieceBuffer(piece),
+									tileSize * c + posOffset,
+									tileSize * r + posOffset
+								);
+							}
 						}
 					}
 				}
-			});
+			);
 
 		lastTime = Date.now();
 		(function animate(currentY, dt) {

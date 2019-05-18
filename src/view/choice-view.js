@@ -35,7 +35,7 @@ var ChoiceView = Backbone.View.extend({
 		this.updatePlayer(player2);
 	},
 	updatePlayer: function(player) {
-		var playerType = player.type,
+		var playerType = player.get('type'),
 			playerIndex = player.get('index'),
 			playerName = player.get('name') || 'NONAME',
 			$choiceBox = this.getChoiceBox(playerIndex),

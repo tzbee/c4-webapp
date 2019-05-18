@@ -25,9 +25,9 @@ var AICache = function() {
 };
 
 var ExpertAIPlayer = Player.extend({
-	type: 'ai',
+	defaults: { type: 'ai' },
 	depth: 8,
-	initialize: function()  {
+	initialize: function() {
 		Player.prototype.initialize.call(this);
 
 		this.set({
@@ -39,20 +39,26 @@ var ExpertAIPlayer = Player.extend({
 	onTurn: function(game) {
 		dispatcher.trigger('loading:start');
 		var gameId = game.get('id');
-		this.getNextMove(game.get('board'), function(nextMove) {
-			dispatcher.trigger('loading:stop');
-			dispatcher.trigger('play', nextMove, this.get('index'), gameId);
-		}.bind(this));
+		this.getNextMove(
+			game.get('board'),
+			function(nextMove) {
+				dispatcher.trigger('loading:stop');
+				dispatcher.trigger('play', nextMove, this.get('index'), gameId);
+			}.bind(this)
+		);
 	},
 	getNextMove: function(boardController, cb) {
 		var boardCopy = boardController.get('board').clone();
 		this.get('cache').clear();
 
-		setTimeout(function() {
-			this.minimax(boardCopy, true, this.depth, -9000, 9000);
-			var choice = this.get('choice');
-			cb(choice);
-		}.bind(this), 100);
+		setTimeout(
+			function() {
+				this.minimax(boardCopy, true, this.depth, -9000, 9000);
+				var choice = this.get('choice');
+				cb(choice);
+			}.bind(this),
+			100
+		);
 	},
 	minimax: function(board, maximize, depth, alpha, beta) {
 		var aiToken = this.get('index'),
@@ -60,14 +66,26 @@ var ExpertAIPlayer = Player.extend({
 			currentToken = maximize ? aiToken : opponentIndex,
 			boardController = this.get('boardController'),
 			cache = this.get('cache'),
-			legalMoves, legalMove, legalMovesCopy, boardCopy, choice,
-			v, i, childNodeValue, hash;
+			legalMoves,
+			legalMove,
+			legalMovesCopy,
+			boardCopy,
+			choice,
+			v,
+			i,
+			childNodeValue,
+			hash;
 
 		boardController.set({
 			board: board
 		});
 
-		if (depth === 0 || boardController.checkWin(aiToken) || boardController.checkWin(opponentIndex) || boardController.isFullBoard()) {
+		if (
+			depth === 0 ||
+			boardController.checkWin(aiToken) ||
+			boardController.checkWin(opponentIndex) ||
+			boardController.isFullBoard()
+		) {
 			return this.evaluate(boardController, depth, currentToken);
 		}
 
@@ -129,7 +147,13 @@ var ExpertAIPlayer = Player.extend({
 				childNodeValue = cache.get(hash);
 
 				if (childNodeValue === null) {
-					childNodeValue = this.minimax(boardCopy, !maximize, depth - 1, alpha, beta);
+					childNodeValue = this.minimax(
+						boardCopy,
+						!maximize,
+						depth - 1,
+						alpha,
+						beta
+					);
 					cache.add(hash, childNodeValue);
 				}
 
@@ -150,7 +174,6 @@ var ExpertAIPlayer = Player.extend({
 			});
 
 			return v;
-
 		} else {
 			v = 9000;
 
@@ -203,7 +226,13 @@ var ExpertAIPlayer = Player.extend({
 				childNodeValue = cache.get(hash);
 
 				if (childNodeValue === null) {
-					childNodeValue = this.minimax(boardCopy, !maximize, depth - 1, alpha, beta);
+					childNodeValue = this.minimax(
+						boardCopy,
+						!maximize,
+						depth - 1,
+						alpha,
+						beta
+					);
 					cache.add(hash, childNodeValue);
 				}
 
@@ -236,7 +265,6 @@ var ExpertAIPlayer = Player.extend({
 
 			if (a === 5 || a === 1) return -1;
 			if (b === 5 || b === 1) return 1;
-
 			else return -1;
 		});
 	},
@@ -248,8 +276,9 @@ var ExpertAIPlayer = Player.extend({
 			depthModifier = currentToken === aiToken ? -depth : depth,
 			chainModifier = board.getNbChains(aiToken);
 
-		if (aiHasWon) return (1000 + depthModifier * 10 + (chainModifier * 3));
-		else if (opponentHasWon) return (-1000 + depthModifier * 10 + (chainModifier * 3));
-		else return (chainModifier * 3) + depthModifier;
+		if (aiHasWon) return 1000 + depthModifier * 10 + chainModifier * 3;
+		else if (opponentHasWon)
+			return -1000 + depthModifier * 10 + chainModifier * 3;
+		else return chainModifier * 3 + depthModifier;
 	}
 });

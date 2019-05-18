@@ -103,7 +103,7 @@ header {
 .button {
 	border: none;
 	background: #65a9d7;
-	padding: 7px 12px;
+	padding: 0.7em 0.8em;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
@@ -171,8 +171,49 @@ header {
 	padding: 0.3em 0 0.3em 0;
 }
 
+/*  Tablets*/
+@media (orientation: landscape) and (max-width: 60em) {
+	.canvas-container {
+		flex: 0 0 45%;
+	}
+}
+
+/* Tablet portrait */
+@media (orientation: portrait) and (max-width: 60em) {
+	.game-container {
+		margin: 0;
+		flex-flow: column;
+		padding: 1em;
+	}
+
+	.canvas-wrapper {
+		font-size: 0.7em;
+	}
+}
+
+/* High res Tablet portrait */
+@media (orientation: portrait) and (max-width: 80em) {
+	.game-container {
+		margin: 0;
+		flex-flow: column;
+		padding: 1em;
+	}
+
+	.canvas-wrapper {
+		font-size: 1em;
+	}
+
+	.start-button {
+		font-size: 0.8em;
+	}
+
+	.options-content {
+		width: 80%;
+	}
+}
+
 /* Small desktop heights*/
-@media (orientation: landscape) and (max-height: 57em) {
+@media (orientation: landscape) and (max-width: 80em) {
 	.canvas-container {
 		font-size: 0.65em;
 	}
@@ -190,9 +231,9 @@ header {
 }
 
 /* Mobile */
-@media (orientation: portrait) {
+@media (orientation: portrait) and (max-width: 30em) {
 	body {
-		font-size: 1.3em;
+		font-size: 0.4em;
 	}
 
 	.game-container {
@@ -221,12 +262,16 @@ header {
 	.options-container {
 	}
 
+	.options-content {
+		width: 80%;
+	}
+
 	.panel-content {
 		height: 7em;
 	}
 
 	.start-button {
-		font-size: 1em;
+		font-size: 0.8em;
 	}
 
 	.log-panel {

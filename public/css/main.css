@@ -152,7 +152,7 @@ header {
 .log-panel {
 	border: solid 1px #dddddd;
 	padding: 0;
-	margin-top: 50px;
+	margin-top: 2em;
 }
 
 .panel-header {
@@ -184,29 +184,44 @@ header {
 	.panel-content {
 		height: 16em;
 	}
+	.options-content {
+		width: 100%;
+	}
 }
 
 /* Mobile */
 @media (orientation: portrait) {
 	body {
+		font-size: 1.3em;
 	}
 
 	.game-container {
 		margin: 0;
+		flex-flow: column;
+		padding: 1em;
+	}
+
+	.players-panel {
+		font-size: 1.4em;
 	}
 
 	.canvas-container {
 		width: 100%;
-		clear: both;
+		flex: 0 0 40%;
 	}
 
 	.canvas-wrapper {
-		width: 90%;
-		margin: auto;
+		font-size: 0.8em;
+	}
+
+	.options-panel {
+		margin-top: 2em;
 	}
 
 	.options-container {
-		clear: both;
-		margin: auto;
+	}
+
+	.panel-content {
+		height: 7em;
 	}
 }

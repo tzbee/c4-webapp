@@ -10,16 +10,23 @@ var LogView = Backbone.View.extend({
 	add: function(message, important) {
 		important = important || false;
 
-		$('.panel-content').append($('<div>', {
-			class: 'log-entry',
-			html: $(!important ? '<span>' : '<strong>', {
-				class: 'log-entry-content',
-				html: message
-			})
-		})).scrollTop(300);
+		$('.panel-content')
+			.append(
+				$('<div>', {
+					class: 'log-entry',
+					html: $(!important ? '<span>' : '<strong>', {
+						class: 'log-entry-content',
+						html: message
+					})
+				})
+			)
+			.scrollTop(300);
 	},
 	onTurnEnd: function(game, row, col) {
-		this.add('Played ' + (col + 1));
+		const playerName = game.get('players')[game.get('turn')].get('name');
+		this.add(
+			'<strong>' + playerName + '</strong>' + ' played ' + (col + 1)
+		);
 	},
 	onGameStart: function() {
 		this.clear();

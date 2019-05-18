@@ -212,7 +212,25 @@ header {
 	}
 }
 
-/* Small desktop heights*/
+/* big screens desktop */
+@media (orientation: landscape) and (max-width: 110em) {
+	.canvas-container {
+		font-size: 0.65em;
+	}
+
+	.log-panel {
+		font-size: 0.6em;
+	}
+
+	.panel-content {
+		height: 16em;
+	}
+	.options-content {
+		width: 100%;
+	}
+}
+
+/* Small desktop */
 @media (orientation: landscape) and (max-width: 80em) {
 	.canvas-container {
 		font-size: 0.65em;

@@ -212,10 +212,28 @@ header {
 	}
 }
 
-/* big screens desktop */
-@media (orientation: landscape) and (max-width: 110em) {
+/* big screens wide desktop */
+@media (orientation: landscape) and (max-width: 110em) and (max-height: 50em) {
 	.canvas-container {
 		font-size: 0.65em;
+	}
+
+	.log-panel {
+		font-size: 0.6em;
+	}
+
+	.panel-content {
+		height: 16em;
+	}
+	.options-content {
+		width: 100%;
+	}
+}
+
+/* big screens desktop */
+@media (orientation: landscape) and (max-width: 110em) and (min-height: 50em) {
+	.canvas-container {
+		font-size: 1em;
 	}
 
 	.log-panel {

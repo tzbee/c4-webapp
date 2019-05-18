@@ -266,7 +266,7 @@ header {
 	}
 }
 
-/* Mobile */
+/* Mobile portrait */
 @media (orientation: portrait) and (max-width: 30em) {
 	body {
 		font-size: 0.4em;
@@ -288,7 +288,7 @@ header {
 	}
 
 	.canvas-wrapper {
-		font-size: 0.8em;
+		font-size: 1.1em;
 	}
 
 	.options-panel {
@@ -312,5 +312,12 @@ header {
 
 	.log-panel {
 		font-size: 1.2em;
+	}
+}
+
+/* Small Mobile portrait */
+@media (orientation: portrait) and (max-width: 20em) {
+	.canvas-wrapper {
+		font-size: 1em;
 	}
 }

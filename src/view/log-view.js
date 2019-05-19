@@ -40,11 +40,15 @@ var LogView = Backbone.View.extend({
 		$('.panel-content').empty();
 	},
 	onWin: function(player) {
-		var playerName = player.get('name');
-		this.add(
-			playerName + ' win' + (playerName !== 'You' ? 's' : ''),
-			true,
-			player.get('type')
-		);
+		if (player) {
+			var playerName = player.get('name');
+			this.add(
+				playerName + ' win' + (playerName !== 'You' ? 's' : ''),
+				true,
+				player.get('type')
+			);
+		} else {
+			this.add("It's a draw!", true);
+		}
 	}
 });

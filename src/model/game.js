@@ -43,6 +43,9 @@ var Game = Backbone.Model.extend({
 				if (board.checkWin(index)) {
 					dispatcher.trigger('win', game.get('players')[index]);
 					dispatcher.trigger('game:disable');
+				} else if (board.isFullBoard()) {
+					dispatcher.trigger('win', null);
+					dispatcher.trigger('game:disable');
 				} else {
 					this.nextPlayer();
 					dispatcher.trigger('turn:' + this.get('turn'), this);
